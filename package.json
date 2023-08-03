@@ -1,0 +1,24 @@
+{
+  "name": "piso-inteligente-currency",
+  "version": "1.0.0",
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "ts-node-dev src/index.ts",
+    "build": "tsc",
+    "start": "node build/index.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.36.2",
+    "@types/dotenv": "^8.2.0",
+    "@typescript-eslint/parser": "^6.2.1",
+    "eslint": "^8.46.0",
+    "prettier": "^3.0.1",
+    "standard": "^17.1.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
