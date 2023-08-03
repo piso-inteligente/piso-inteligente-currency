@@ -1,0 +1,29 @@
+name: Currency pipeline
+
+on:
+  workflow_dispatch:
+
+  repository_dispatch:
+    types:
+      - webhook
+  schedule:
+    - cron: '00 14 * * *'
+
+jobs:
+  update-currency:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install packages
+        run: npm install
+      - name: Install playwright browsers
+        run: npx playwright install --with-deps
+      - run: |
+          npm run build
+          npm run start
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          SECRET: ${{ secrets.SECRET }}
