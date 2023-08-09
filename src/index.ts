@@ -1,7 +1,8 @@
 import 'dotenv/config'
 import axios from 'axios'
 import playwright from 'playwright'
-import { formatDate } from './utils'
+import { EXCHANGE_SELECTOR } from './constants'
+import { formatDate, getTextContent } from './utils'
 
 ;(async () => {
   const API_URL = process.env.API_URL
@@ -26,7 +27,7 @@ import { formatDate } from './utils'
   const page = await browser.newPage()
   await page.goto(URL)
 
-  const exchangeText = await page.$eval('tr.Celda > td:nth-child(2)', (el) => el.textContent)
+  const exchangeText = await getTextContent({ page, selector: EXCHANGE_SELECTOR })
 
   await browser.close()
 
