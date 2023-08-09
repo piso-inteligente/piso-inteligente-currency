@@ -10,8 +10,7 @@ export const formatDate = (date: Date) => {
 
 export const getTextContent = async ({ page, selector }: TextContent) => {
   try {
-    const element = await page.$eval(selector, (el) => el)
-    return element.textContent
+    return await page.$eval(selector, (el) => el.textContent)
   } catch (error) {
     return null
   }
