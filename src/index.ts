@@ -2,7 +2,7 @@ import 'dotenv/config'
 import axios from 'axios'
 import playwright from 'playwright'
 import { EXCHANGE_SELECTOR } from './constants'
-import { formatDate, getTextContent } from './utils'
+import { formatDate, getTextContent, saveJSON } from './utils'
 
 ;(async () => {
   const API_URL = process.env.API_URL
@@ -44,4 +44,8 @@ import { formatDate, getTextContent } from './utils'
   await axios.post(API_URL, { exchange }, { headers: { authorization: SECRET } })
 
   console.log(`🟢 ${date}: Tipo de cambio actualizado a $${exchange}`)
+
+  const id = new Date().getTime()
+
+  await saveJSON({ id, date, exchange })
 })()
